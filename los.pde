@@ -10,10 +10,17 @@ boolean clicking = false;
 float vel = 0;
 float off = 0;
 
+PImage[] imgs = new PImage[max];
+
 void setup(){
   size(800,600);
   for(int i = 0;i<num+2;i++)
     nr[i]=rand();
+  for(int i = 0;i<max;i++)
+    imgs[i]=loadImage("data/"+(i+1)+".png");
+  for(int i = 0;i<max;i++)
+    if(imgs[i]==null)
+      imgs[i]=loadImage("data/"+21+".png");
 }
 
 void draw(){
@@ -27,6 +34,7 @@ void draw(){
     fill(255);
     textAlign(CENTER,CENTER);
     textSize(s*0.75);
+    image(imgs[nr[i+1]-1],width/2-s*num/2+i*s-s*off/10f,height/3,s,s);
     text(nr[i+1],width/2-s*num/2+i*s+s/2-s*off/10f,height*5/11);
   }
   
